@@ -1,0 +1,5 @@
+---
+applications:
+- name: hms
+  memory: 512M
+  random-route: true
