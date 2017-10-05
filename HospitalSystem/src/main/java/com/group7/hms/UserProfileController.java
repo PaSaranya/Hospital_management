@@ -30,8 +30,8 @@ import com.group7.hms.dao.AppointmentDAO;
 import com.group7.hms.dao.UserDAO;
 import com.group7.hms.dao.UserDAOImpl;
 
-import com.group7.hms.service.GeneratePDF;
-import com.group7.hms.service.GeneratePayCheck;
+//import com.group7.hms.service.GeneratePDF;
+//import com.group7.hms.service.GeneratePayCheck;
 
 import com.group7.hms.service.SendEmail;
 
@@ -95,15 +95,16 @@ public class UserProfileController {
 				billedList = appDaoObject.getBilledAppointments(userInfo.getPrimaryEmail());
 
 				if(billedList!=null&&billedList.size()>0);
-				bill = GeneratePDF.generateBill((Patient)userInfo,billedList);
+				bill = 0;
+//				bill = GeneratePDF.generateBill((Patient)userInfo,billedList);
 
 			}
 			else if((userInfo.getJobTitle()).equalsIgnoreCase("Admin")){
 				releasedUsers = appDaoObject.getReleasedPatient();
-				GeneratePayCheck.generate(userInfo);
+//				GeneratePayCheck.generate(userInfo);
 			}
 			else{
-				GeneratePayCheck.generate(userInfo);
+//				GeneratePayCheck.generate(userInfo);
 			}
 			model.addAttribute("user", userInfo);
 			model.addAttribute("appList",appointmentList);
@@ -124,7 +125,8 @@ public class UserProfileController {
 		
 		User user = daoObject.getUser(email);
 		model.addAttribute("user", user);
-		if (user.getJobTitle().equalsIgnoreCase("Patient")){
+		System.out.println("***************getJobTitle****************"+user.getJobTitle());
+		if (user.getJobTitle() !=null && user.getJobTitle().equalsIgnoreCase("Patient")){
 			model.addAttribute("patient",user);
 			model.addAttribute("viewName", "updatePatientProfile");
 			//model.addAttribute("viewName","home");

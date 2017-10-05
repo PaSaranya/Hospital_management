@@ -1,6 +1,8 @@
 package com.group7.hms.Users;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  * public class User - will hold and handle the all of the general information
@@ -511,12 +513,25 @@ public abstract class User {
 	 * @return The calculated age
 	 */
 	private int calculateAge(Date dob) {
-		Date currentDate = new Date();
-		int calcAge = currentDate.getYear() - dob.getYear();
-		if (currentDate.getMonth() < dob.getMonth())
+		Date date = new Date();
+		Calendar calendar = new GregorianCalendar();
+		calendar.setTime(date);
+		int year = calendar.get(Calendar.YEAR);
+		//Add one to month {0 - 11}
+		int month = calendar.get(Calendar.MONTH) + 1;
+		int day = calendar.get(Calendar.DAY_OF_MONTH);
+		
+		Calendar dobcalendar = new GregorianCalendar();
+		dobcalendar.setTime(dob);
+		int dobyear = dobcalendar.get(Calendar.YEAR);
+		//Add one to month {0 - 11}
+		int dobmonth = dobcalendar.get(Calendar.MONTH) + 1;
+		int dobday = dobcalendar.get(Calendar.DAY_OF_MONTH);
+		int calcAge = year - dobyear;
+		if (month < dobmonth)
 			calcAge--;
-		else if ((currentDate.getMonth() == dob.getMonth())
-				&& (currentDate.getDay() < dob.getDay()))
+		else if ((month == dobmonth)
+				&& (day < dobday))
 			calcAge--;
 
 		return calcAge;
