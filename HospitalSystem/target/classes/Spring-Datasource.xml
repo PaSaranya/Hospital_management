@@ -8,7 +8,7 @@
       <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
       <property name="url" value="jdbc:mysql://localhost:3306/"/>
       <property name="username" value="root"/>
-      <property name="password" value="sept"/>
+      <property name="password" value="Lockme!23"/>
    </bean>
   
      <bean id="UserDAO" class="com.group7.hms.dao.UserDAOImpl">
